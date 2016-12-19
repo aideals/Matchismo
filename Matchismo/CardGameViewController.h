@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface CardGameViewController : UIViewController
+@property (nonatomic,assign) int flipCount;
+
+- (IBAction)flipCard:(UIButton *)sender;
 
 
 @end
