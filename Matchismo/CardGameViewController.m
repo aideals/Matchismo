@@ -34,13 +34,17 @@
     [self updateUI];
     
     self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 430, 85, 75)];
-    
     self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 430, 85, 75)];
     
     [self.view addSubview:self.scoreLabel];
     [self.view addSubview:self.flipsLabel];
 
 }
+
+
+#define x_space 25
+#define y_space 45
+
 
 - (void)updateUI
 {
@@ -49,8 +53,9 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [self.cardButtons addObject:button];
             Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
-            button.layer.cornerRadius = 0.5;
-            button.frame = CGRectMake(35 * i + 35, 30 * j + 30, 70, 85);
+            button.layer.cornerRadius = 4.0;
+            button.frame = CGRectMake(x_space + (x_space + 60) * j, y_space + (y_space + 95) * i, 70, 95);
+            button.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.4 alpha:1.0];
             [button setTitle:@"★" forState:UIControlStateNormal];
             [button setTitle:card.content forState:UIControlStateSelected];
             [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
