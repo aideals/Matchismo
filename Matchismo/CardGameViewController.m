@@ -11,8 +11,8 @@
 #import "PlayingCardDeck.h"
 
 @interface CardGameViewController ()
-@property (nonatomic, weak) UILabel *scoreLabel;
-@property (nonatomic, weak) UILabel *flipsLabel;
+@property (nonatomic, strong) UILabel *scoreLabel;
+@property (nonatomic, strong) UILabel *flipsLabel;
 @property (nonatomic, strong) NSMutableArray *cardButtons;
 @property (nonatomic, strong) CardMatchingGame *game;
 @end
@@ -36,6 +36,14 @@
 {
     [super viewDidLoad];
     [self updateUI];
+    
+    self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 430, 85, 75)];
+    
+    self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 430, 85, 75)];
+    
+    [self.view addSubview:self.scoreLabel];
+    [self.view addSubview:self.flipsLabel];
+
 }
 
 - (void)updateUI
@@ -43,8 +51,9 @@
    for (int i = 0; i <= 3; i++) {
         for (int j = 0; j <= 3; j++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [self.cardButtons addObject:button];
             Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
-            button.layer.cornerRadius = 0.9;
+            button.layer.cornerRadius = 0.5;
             button.frame = CGRectMake(35 * i + 35, 30 * j + 30, 35, 45);
             [button setTitle:@"★" forState:UIControlStateNormal];
             [button setTitle:card.content forState:UIControlStateSelected];
@@ -52,7 +61,6 @@
             button.selected = card.isFaceUp;
             button.enabled = !card.isUnPlayable;
             button.alpha = card.isUnPlayable ? 0.3 : 1.0;
-            [self.cardButtons addObject:button];
             [self.view addSubview:button];
         }
     }
