@@ -22,14 +22,10 @@
 
 - (CardMatchingGame *)game
 {
+    self.cardButtons = [[NSMutableArray alloc] init];
+    
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
-}
-
-- (void)setCardButtons:(NSMutableArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
 }
 
 - (void)viewDidLoad
@@ -54,7 +50,7 @@
             [self.cardButtons addObject:button];
             Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
             button.layer.cornerRadius = 0.5;
-            button.frame = CGRectMake(35 * i + 35, 30 * j + 30, 35, 45);
+            button.frame = CGRectMake(35 * i + 35, 30 * j + 30, 70, 85);
             [button setTitle:@"★" forState:UIControlStateNormal];
             [button setTitle:card.content forState:UIControlStateSelected];
             [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
