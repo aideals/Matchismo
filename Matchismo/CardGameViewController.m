@@ -32,14 +32,11 @@
 {
     [super viewDidLoad];
     [self updateUI];
-    
-    self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 600, 85, 75)];
-    self.scoreLabel.textColor = [UIColor blackColor];
-    
+    [self.view addSubview:self.scoreLabel];
+   
     self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 600, 85, 75)];
     self.flipsLabel.textColor = [UIColor blackColor];
-    
-    [self.view addSubview:self.scoreLabel];
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d",self.flipCount];
     [self.view addSubview:self.flipsLabel];
 
 }
@@ -69,8 +66,10 @@
             [self.view addSubview:button];
         }
     }
-
+    self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 600, 85, 75)];
+    self.scoreLabel.textColor = [UIColor blackColor];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
+    
 }
 
 - (IBAction)flipCard:(UIButton *)sender
@@ -83,7 +82,8 @@
 - (void)setFlipCount:(int)flipCount
 {
     _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d",self.flipCount];
+    
+    
     NSLog(@"flips update to %d",self.flipCount);
     
 }
