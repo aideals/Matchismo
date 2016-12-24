@@ -38,7 +38,7 @@
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
     [self.view addSubview:self.scoreLabel];
    
-    self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 600, 85, 75)];
+    self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(295, 600, 85, 75)];
     self.flipsLabel.textColor = [UIColor blackColor];
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d",self.flipCount];
     [self.view addSubview:self.flipsLabel];
@@ -61,7 +61,6 @@
                 button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [self.cardButtons addObject:button];
                 card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
-                [button setTitle:card.content forState:UIControlStateSelected];
                 button.layer.cornerRadius = 5.0;
                 button.frame = CGRectMake(x_space + (x_space + 60) * j, y_space + (y_space + 95) * i, 70, 95);
                 button.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.4 alpha:1.0];
@@ -72,13 +71,12 @@
         }
     }
     else {
+        [button setTitle:card.content forState:UIControlStateSelected];
         [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
         button.selected = card.isFaceUp;
         button.enabled = !card.isUnPlayable;
         button.alpha = card.isUnPlayable ? 0.3 : 1.0;
-        
         }
-    
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
 }
@@ -87,7 +85,6 @@
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
-    
     [self updateUI];
 }
 
