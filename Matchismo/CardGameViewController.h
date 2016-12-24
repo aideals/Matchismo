@@ -13,6 +13,5 @@
 
 - (IBAction)flipCard:(UIButton *)sender;
 
-
 @end
 

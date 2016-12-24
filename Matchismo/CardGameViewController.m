@@ -52,24 +52,33 @@
 
 - (void)updateUI
 {
-   for (int i = 0; i <= 3; i++) {
-        for (int j = 0; j <= 3; j++) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [self.cardButtons addObject:button];
-            Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
-            button.layer.cornerRadius = 5.0;
-            button.frame = CGRectMake(x_space + (x_space + 60) * j, y_space + (y_space + 95) * i, 70, 95);
-            button.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.4 alpha:1.0];
-            [button addTarget:self action:@selector(flipCard:) forControlEvents:UIControlEventTouchDown];
-            [button setTitle:@"★" forState:UIControlStateNormal];
-            [button setTitle:card.content forState:UIControlStateSelected];
-            [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
-            button.selected = card.isFaceUp;
-            button.enabled = !card.isUnPlayable;
-            button.alpha = card.isUnPlayable ? 0.3 : 1.0;
-            [self.view addSubview:button];
+    UIButton *button;
+    Card *card;
+    
+    if (!button) {
+        for (int i = 0; i <= 3; i++) {
+            for (int j = 0; j <= 3; j++) {
+                button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                [self.cardButtons addObject:button];
+                card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
+                [button setTitle:card.content forState:UIControlStateSelected];
+                button.layer.cornerRadius = 5.0;
+                button.frame = CGRectMake(x_space + (x_space + 60) * j, y_space + (y_space + 95) * i, 70, 95);
+                button.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.4 alpha:1.0];
+                [button addTarget:self action:@selector(flipCard:) forControlEvents:UIControlEventTouchDown];
+                [button setTitle:@"★" forState:UIControlStateNormal];
+                [self.view addSubview:button];
+            }
         }
     }
+    else {
+        [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
+        button.selected = card.isFaceUp;
+        button.enabled = !card.isUnPlayable;
+        button.alpha = card.isUnPlayable ? 0.3 : 1.0;
+        
+        }
+    
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
 }
@@ -78,6 +87,7 @@
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
+    
     [self updateUI];
 }
 
