@@ -10,11 +10,11 @@
 #import "Card.h"
 
 @interface PlayingCard : Card
+
 @property (nonatomic, strong) NSString *suit;
 @property (nonatomic) NSInteger rank;
 
 + (NSArray *)validSuits;
-
 + (NSInteger)maxRank;
 
 @end

@@ -9,7 +9,7 @@
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGame ()
-@property (nonatomic) NSInteger score;
+@property (nonatomic) int score;
 @property (nonatomic,strong) NSMutableArray *cards;
 @end
 
@@ -23,16 +23,19 @@
 
 - (id)initWithCardCount:(NSInteger)cardCount usingDeck:(Deck *)deck
 {
+    int i;
+    
     self = [super init];
+    
     if (self) {
-        for (int i; i <= cardCount; i++) {
+        for (i = 0; i < cardCount; i++) {
              Card *card = [deck drawRandomCard];
           
             if (!card) {
                 self = nil;
             }
             else {
-                card = self.cards[i];
+                 self.cards[i] = card;
             }
         
         }
@@ -58,7 +61,7 @@
         if (!card.isFaceUp) {
         for (Card *otherCard in self.cards) {
             if (otherCard.isFaceUp && !otherCard.unPlayable) {
-                int matchScore = [card matchOtherCard:@[otherCard]];
+                int matchScore = [card match:@[otherCard]];
                 if (matchScore) {
                     card.unPlayable = YES;
                     otherCard.unPlayable = YES;
@@ -66,7 +69,7 @@
                 }
                 else {
                     otherCard.faceUp = NO;
-                    self.score -= matchScore * MISMATCH_PENALTY;
+                    self.score -= MISMATCH_PENALTY;
                 }
                 break;
             }

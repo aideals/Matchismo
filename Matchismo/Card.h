@@ -11,9 +11,9 @@
 @interface Card : NSObject
 @property (nonatomic,getter=isFaceUp) BOOL faceUp;
 @property (nonatomic,getter=isUnPlayable) BOOL unPlayable;
-@property (nonatomic) NSString *content;
+@property (nonatomic) NSString *contents;
 
-- (int)matchOtherCard:(NSArray *)otherCards;
+- (int)match:(NSArray *)otherCards;
 
 
 @end

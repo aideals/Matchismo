@@ -35,7 +35,7 @@
     
     self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 600, 85, 75)];
     self.scoreLabel.textColor = [UIColor blackColor];
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
     [self.view addSubview:self.scoreLabel];
    
     self.flipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(295, 600, 85, 75)];
@@ -71,14 +71,14 @@
         }
     }
     else {
-        [button setTitle:card.content forState:UIControlStateSelected];
-        [button setTitle:card.content forState:UIControlStateSelected|UIControlStateDisabled];
+        [button setTitle:card.contents forState:UIControlStateSelected];
+        [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         button.selected = card.isFaceUp;
         button.enabled = !card.isUnPlayable;
         button.alpha = card.isUnPlayable ? 0.3 : 1.0;
         }
     
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld",self.game.score];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
 
 - (IBAction)flipCard:(UIButton *)sender

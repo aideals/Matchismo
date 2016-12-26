@@ -23,10 +23,12 @@
 
 - (void)addCard:(Card *)card atTop:(BOOL)top
 {
-    if (!top) {
+    if (top)
+    {
         [self.cards insertObject:card atIndex:0];
     }
-    else {
+    else
+    {
         [self.cards addObject:card];
     }
 
@@ -34,11 +36,14 @@
 
 - (Card *)drawRandomCard
 {
-    Card *randomCard;
+    Card *randomCard = nil;
     
-    unsigned index = arc4random() % self.cards.count;
-    randomCard = self.cards[index];
-    [self.cards removeObjectAtIndex:index];
+    if (self.cards.count) {
+        unsigned index = arc4random() % self.cards.count;
+        randomCard = self.cards[index];
+        [self.cards removeObjectAtIndex:index];
+    }
+    
     
     return randomCard;
 }

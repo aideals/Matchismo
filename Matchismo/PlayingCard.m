@@ -11,29 +11,30 @@
 @implementation PlayingCard
 @synthesize suit = _suit;
 
-- (int)matchOtherCard:(NSArray *)otherCards
+- (int)match:(NSArray *)otherCards
 {
-    int score;
+    int score = 0;
     if (otherCards.count == 1) {
         PlayingCard *otherCard = [otherCards lastObject];
-        if (otherCard.suit == self.suit) {
-            score = 4;
-        }
-        if (otherCard.rank == self.rank) {
+        if ([otherCard.suit isEqualToString:self.suit]) {
             score = 1;
+        }
+        else if (otherCard.rank == self.rank) {
+            score = 4;
         }
     }
     return score;
 }
 
-- (void)setContent:(NSString *)content
+- (NSString *)contents
 {
-    [[PlayingCard rankStrings][self.rank] stringByAppendingString:self.suit];
+    return [[PlayingCard rankStrings][self.rank] stringByAppendingString:self.suit];
 }
 
 - (void)setSuit:(NSString *)suit
 {
-    if ([[PlayingCard validSuits] containsObject:suit]) {
+    if ([[PlayingCard validSuits] containsObject:suit])
+    {
         _suit = suit;
     }
 }

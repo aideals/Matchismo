@@ -10,7 +10,7 @@
 #import "Deck.h"
 
 @interface CardMatchingGame : NSObject
-@property (nonatomic,readonly) NSInteger score;
+@property (nonatomic,readonly) int score;
 
 - (id)initWithCardCount:(NSInteger)cardCount usingDeck:(Deck *)deck;
 
