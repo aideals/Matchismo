@@ -16,6 +16,7 @@
     int score = 0;
     if (otherCards.count == 1) {
         PlayingCard *otherCard = [otherCards lastObject];
+        // if (otherCard.suit == self.suit)
         if ([otherCard.suit isEqualToString:self.suit]) {
             score = 1;
         }
@@ -25,6 +26,14 @@
     }
     return score;
 }
+
+/* 
+ - (void)contents
+ {
+    [PlayingCard rankStrings][self.rank] stringByAppendingString:self.suit];
+
+ }
+ */
 
 - (NSString *)contents
 {

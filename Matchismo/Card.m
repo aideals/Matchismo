@@ -12,6 +12,8 @@
 
 - (int)match:(NSArray *)otherCards
 {
+    //int score
+    
     int score = 0;
     
     for (Card *card in otherCards)
@@ -20,6 +22,9 @@
         {
             return score = 1;
         }
+       /* else {
+            return 0;
+        }*/
     }
     return score;
 }

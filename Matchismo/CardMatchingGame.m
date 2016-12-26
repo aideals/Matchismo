@@ -28,6 +28,7 @@
     self = [super init];
     
     if (self) {
+        //for (i; i <= cardCount; i++)
         for (i = 0; i < cardCount; i++) {
              Card *card = [deck drawRandomCard];
           
@@ -35,7 +36,8 @@
                 self = nil;
             }
             else {
-                 self.cards[i] = card;
+                //card = self.cards[i];
+                self.cards[i] = card;
             }
         
         }
@@ -63,12 +65,14 @@
             if (otherCard.isFaceUp && !otherCard.unPlayable) {
                 int matchScore = [card match:@[otherCard]];
                 if (matchScore) {
+                    //other.unPlayable = YES;
                     card.unPlayable = YES;
                     otherCard.unPlayable = YES;
                     self.score += matchScore * MATCH_BONUS;
                 }
                 else {
                     otherCard.faceUp = NO;
+                    //self.score -= matchScore * MISMATCH_PENALTY;
                     self.score -= MISMATCH_PENALTY;
                 }
                 break;
