@@ -61,7 +61,7 @@
             if (otherCard.isFaceUp && !otherCard.unPlayable) {
                 int matchScore = [card matchOtherCard:@[otherCard]];
                 if (matchScore) {
-                    otherCard.faceUp = YES;
+                    card.unPlayable = YES;
                     otherCard.unPlayable = YES;
                     self.score += matchScore * MATCH_BONUS;
                 }
