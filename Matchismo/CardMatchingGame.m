@@ -8,7 +8,6 @@
 
 #import "CardMatchingGame.h"
 
-
 @interface CardMatchingGame ()
 @property (nonatomic) NSInteger score;
 @property (nonatomic,strong) NSMutableArray *cards;
@@ -78,7 +77,5 @@
     }
 
 }
-
-
 
 @end
