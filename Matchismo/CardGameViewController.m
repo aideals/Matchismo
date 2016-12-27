@@ -22,10 +22,14 @@
 
 - (CardMatchingGame *)game
 {
-    self.cardButtons = [[NSMutableArray alloc] init];
-    
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
+}
+
+- (NSMutableArray *)cardButtons
+{
+    if (!_cardButtons) _cardButtons = [[NSMutableArray alloc] init];
+    return _cardButtons;
 }
 
 - (void)viewDidLoad
@@ -58,7 +62,7 @@
     if (!self.cardButtons) {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
-               UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [self.cardButtons addObject:button];
                 card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
                 button.layer.cornerRadius = 5.0;
