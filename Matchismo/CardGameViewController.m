@@ -70,14 +70,18 @@
             }
         }
     }
-    else {
-        UIButton *button;
-        [button setTitle:card.contents forState:UIControlStateSelected];
-        [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        button.selected = card.isFaceUp;
-        button.enabled = !card.isUnPlayable;
-        button.alpha = card.isUnPlayable ? 0.3 : 1.0;
+    else
+    {
+        for (UIButton *button in self.cardButtons)
+        {
+            [button setTitle:card.contents forState:UIControlStateSelected];
+            [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+            button.selected = card.isFaceUp;
+            button.enabled = !card.isUnPlayable;
+            button.alpha = card.isUnPlayable ? 0.3 : 1.0;
         }
+        
+    }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
