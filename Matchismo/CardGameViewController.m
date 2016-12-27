@@ -54,7 +54,7 @@
 {
    Card *card;
     
-    //if (!button) button为局部变量，每次updateUI调用都会被重置为nil
+    //if (!button) button为局部变量，每次调用updateUI,button都会被重置为nil
     if (!self.cardButtons) {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
