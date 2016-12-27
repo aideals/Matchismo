@@ -52,14 +52,13 @@
 
 - (void)updateUI
 {
-    UIButton *button;
-    Card *card;
+   Card *card;
     
     //if (!button) button为局部变量，每次updateUI调用都会被重置为nil
     if (!self.cardButtons) {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
-                button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+               UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [self.cardButtons addObject:button];
                 card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
                 button.layer.cornerRadius = 5.0;
@@ -72,6 +71,7 @@
         }
     }
     else {
+        UIButton *button;
         [button setTitle:card.contents forState:UIControlStateSelected];
         [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         button.selected = card.isFaceUp;
