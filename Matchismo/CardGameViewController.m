@@ -72,6 +72,14 @@
     }
     else
     {
+        /*
+         [button setTitle:card.contents forState:UIControlStateSelected];
+         [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+         button.selected = card.isFaceUp;
+         button.enabled = !card.isUnPlayable;
+         button.alpha = card.isUnPlayable ? 0.3 : 1.0;
+        */
+        
         for (UIButton *button in self.cardButtons)
         {
             [button setTitle:card.contents forState:UIControlStateSelected];
