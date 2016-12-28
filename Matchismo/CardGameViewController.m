@@ -59,9 +59,10 @@
    Card *card;
     
     //if (!button) button为局部变量，每次调用updateUI,button都会被重置为nil
-    if (!self.cardButtons) {
-        for (int i = 0; i <= 3; i++) {
-            for (int j = 0; j <= 3; j++) {
+    //if (!self.cardButtons)
+    if (self.cardButtons.count == 0) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [self.cardButtons addObject:button];
                 card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
@@ -86,11 +87,11 @@
         
         for (UIButton *button in self.cardButtons)
         {
-            [button setTitle:card.contents forState:UIControlStateSelected];
-            [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-            button.selected = card.isFaceUp;
-            button.enabled = !card.isUnPlayable;
-            button.alpha = card.isUnPlayable ? 0.3 : 1.0;
+           [button setTitle:card.contents forState:UIControlStateSelected];
+           [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+           button.selected = card.isFaceUp;
+           button.enabled = !card.isUnPlayable;
+           button.alpha = card.isUnPlayable ? 0.3 : 1.0;
         }
         
     }
