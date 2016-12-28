@@ -45,7 +45,6 @@
         [self.cards removeObjectAtIndex:index];
     }
     
-    
     return randomCard;
 }
 
