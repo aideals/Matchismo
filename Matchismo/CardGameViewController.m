@@ -56,7 +56,7 @@
 
 - (void)updateUI
 {
-   Card *card;
+   
     
     //if (!button) button为局部变量，每次调用updateUI,button都会被重置为nil
     //if (!self.cardButtons)
@@ -65,7 +65,6 @@
             for (int j = 0; j < 4; j++) {
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [self.cardButtons addObject:button];
-                card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
                 button.layer.cornerRadius = 5.0;
                 button.frame = CGRectMake(x_space + (x_space + 60) * j, y_space + (y_space + 95) * i, 70, 95);
                 button.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.4 alpha:1.0];
@@ -87,6 +86,7 @@
         
         for (UIButton *button in self.cardButtons)
         {
+           Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:button]];
            [button setTitle:card.contents forState:UIControlStateSelected];
            [button setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
            button.selected = card.isFaceUp;
